@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Registration</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- <img class="img" src="img/4448.jpg"> -->
+    <h2>Voter Registration</h2>
+    <form id="registrationForm">
+        <label for="fullName">Full Name:</label><br>
+        <input type="text" id="fullName" name="fullName" required><br><br>
+
+        <label for="voterId">Voter Number:</label><br>
+        <input type="text" id="voterId" name="voterId" readonly><br><br>
+
+        <label for="AdhaarId">Adhaar ID Number:</label><br>
+        <input type="text" id="AdhaarId" name="AdhaarId" required><br><br>
+
+        <label for="imageCapture">Image Capture:</label><br>
+        <input type="file" id="imageCapture" name="imageCapture" accept="image/*" capture="camera" required><br><br>
+
+        <label for="fingerprintCapture">Fingerprint Capture:</label><br>
+        <input type="file" id="fingerprintCapture" name="fingerprintCapture" accept=".png,.jpg,.jpeg" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        // Function to generate random Voter ID Number
+        function generateVoterId() {
+            // Generate a random 8-digit number
+            var voterId = Math.floor(10000000 + Math.random() * 90000000);
+            document.getElementById("voterId").value = voterId;
+        }
+
+        // Call generateVoterId() function on page load
+        generateVoterId();
+    </script>
+</body>
+</html>
