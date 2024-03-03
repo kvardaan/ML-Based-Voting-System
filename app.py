@@ -6,7 +6,7 @@ import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-mongoDB_connection = pymongo.MongoClient("mongodb+srv://admin:admin@cluster0.cynvddz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoDB_connection = pymongo.MongoClient("mongodb+srv://<username>:<password>@cluster0.cynvddz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 database = mongoDB_connection["voting_system"]
 
 class Voter:
