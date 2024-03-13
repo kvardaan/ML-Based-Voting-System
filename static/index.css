@@ -1,21 +1,24 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    /*padding: 20px;*/
     background-color: rgba(255, 250, 240, 0.12);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    margin: 0px 0px;
 }
 
+/* Heading Styles */
 h3 {
     text-align: center;
     color: #333;
     font-weight: bold;
 }
 
+/* Form Styles */
 form {
     max-width: 400px;
-    margin: 20px auto;
+    margin: 4rem auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -32,8 +35,8 @@ input[type="text"],
 input[type="file"],
 input[type="submit"] {
     width: 100%;
-    padding: 6px;
-    margin-bottom: 20px;
+    padding: 10px;
+    margin-bottom: 25px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
@@ -72,14 +75,14 @@ input:invalid {
     margin-top: 5px;
 }
 
-/* Media queries for responsiveness */
+/* Media Queries for Responsiveness */
 @media only screen and (max-width: 600px) {
     form {
         padding: 10px;
     }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 450px) {
     form {
         max-width: 300px;
     }
@@ -98,45 +101,112 @@ input:invalid {
     z-index: 1;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-    color: #ffffff; /* Change this to the color you want */
-}
-
-.navbar {
-    margin-top: auto; /* Remove top margin */
-    min-height: 50px; /* Set your desired minimum height */
-}
-
-.navbar-dark .navbar-nav .nav-link {
-    font-size: 16px; /* Set your desired font size */
-}
-
-button {
-    background-color: green;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    display: block; /* Make the button a block-level element for center alignment */
-    margin: 0 auto; /* Center-align the button horizontally */
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
 .welcome {
     text-align: center;
-    margin-top: -1%;
+    margin-top: 10%;
 }
 
+.voting-results{
+    display: flex;
+    justify-content: center;
+}
+
+.voting-results .nav-link:link, .voting-results .nav-link:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.voting-results .nav-link:hover, .voting-results .nav-link:active {
+  background-color: red;
+}
+
+/* Footer Styles */
 footer {
-    background-color: #413c3c;
+    background-color: #333;
+    color: #fff;
     text-align: center;
+    padding: 20px 0;
     position: absolute;
     bottom: 0;
     width: 100%;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ccc;
+}
+
+
+
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+ }
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    /*background-color: #04AA6D;*/
     color: white;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {display: none;}
+    .topnav a.icon {
+      float: right;
+      display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .topnav.responsive {
+    display: flex;
+    flex-direction: column;
+    }
+    .topnav.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+
+    .topnav{
+    display: flex;
+    justify-content: space-between;
+    }
+
+    h1{
+    font-size: 1rem;
+    }
 }
