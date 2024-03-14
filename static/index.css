@@ -13,6 +13,7 @@ h3 {
     text-align: center;
     color: #333;
     font-weight: bold;
+    font-size: x-large;
 }
 
 /* Form Styles */
@@ -29,6 +30,7 @@ label {
     display: block;
     color: #555;
     font-size: 14px;
+    margin-bottom: 5px;
 }
 
 input[type="text"],
@@ -112,16 +114,16 @@ input:invalid {
 }
 
 .voting-results .nav-link:link, .voting-results .nav-link:visited {
-  background-color: #f44336;
-  color: white;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .voting-results .nav-link:hover, .voting-results .nav-link:active {
-  background-color: red;
+    background-color: red;
 }
 
 /* Footer Styles */
@@ -133,6 +135,7 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
+    height: inherit;
 }
 
 footer a {
@@ -180,33 +183,88 @@ footer a:hover {
 @media screen and (max-width: 600px) {
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
-      float: right;
-      display: block;
+        float: right;
+        display: block;
     }
 }
 
 @media screen and (max-width: 600px) {
     .topnav.responsive {
-    display: flex;
-    flex-direction: column;
+        display: flex;
+        flex-direction: column;
     }
     .topnav.responsive .icon {
-      position: absolute;
-      right: 0;
-      top: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
     }
     .topnav.responsive a {
-      float: none;
-      display: block;
-      text-align: left;
+        float: none;
+        display: block;
+        text-align: left;
     }
 
     .topnav{
-    display: flex;
-    justify-content: space-between;
+        display: flex;
+        justify-content: space-between;
     }
 
     h1{
-    font-size: 1rem;
+        font-size: 1rem;
     }
+}
+
+/* Submit Button */
+button {
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    display: block; /* Make the button a block-level element for center alignment */
+    margin: 0 auto; /* Center-align the button horizontally */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.analyticsPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+.analyticsPage {
+    table {
+        width: auto;
+        /*max-width: 25%;*/
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            color: #666;
+        }
+    th {
+        background-color: #f2f2f2;
+    }
+}
+
+.chart-container {
+    width: 50%;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
 }

@@ -6,6 +6,7 @@
     <title>ML Based Voting System - Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="topnav" id="myTopnav">
@@ -30,14 +31,14 @@
 
     <!-- Your JavaScript files here -->
 <script>
-function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
 </script>
 </body>
 </html>

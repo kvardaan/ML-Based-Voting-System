@@ -6,8 +6,9 @@ import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-mongoDB_connection = pymongo.MongoClient("mongodb+srv://<username>:<password>@cluster0.cynvddz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoDB_connection = pymongo.MongoClient("mongodb+srv://admin:ad_min@cluster0.cynvddz.mongodb.net/")
 database = mongoDB_connection["voting_system"]
+testing_collection_for_analytics_dashboard = database["votes"]
 
 class Voter:
     def __init__(self, voter_id, full_name, adhaar_id, face_data, fingerprint_data):
@@ -38,7 +39,8 @@ def candidate_registration():
 
 @app.route('/voting_results')
 def voting_results():
-    return render_template('voting_results.html')
+    candidates_data = dashboard()
+    return render_template('voting_results.html', candidates=candidates_data)
 
 @app.route('/submit_voter_registration', methods=['POST'])
 def submit_voter_registration():
@@ -101,6 +103,34 @@ def save_symbol(symbol_file):
     symbol_path = os.path.join(symbols_directory, secure_filename(symbol_file.filename))
     symbol_file.save(symbol_path)
     return symbol_path
+
+# Dashboard Work
+# Sample data
+sample_data = [
+    {"party": "Party A", "candidate": "Candidate 1", "votes": 250},
+    {"party": "Party A", "candidate": "Candidate 2", "votes": 120},
+    {"party": "Party B", "candidate": "Candidate 3", "votes": 180},
+    {"party": "Party B", "candidate": "Candidate 4", "votes": 90},
+    {"party": "Party C", "candidate": "Candidate 5", "votes": 200},
+    {"party": "Party C", "candidate": "Candidate 6", "votes": 210},
+]
+
+# Insert sample data if the collection is empty
+if testing_collection_for_analytics_dashboard.count_documents({}) == 0:
+    testing_collection_for_analytics_dashboard.insert_many(sample_data)
+
+print("Data inserted")
+def dashboard():
+    votes = list(testing_collection_for_analytics_dashboard.find())
+    candidates = {}
+    for vote in votes:
+        candidate_party = f"{vote['candidate']} ({vote['party']})"
+        if candidate_party in candidates:
+            candidates[candidate_party] += vote['votes']
+        else:
+            candidates[candidate_party] = vote['votes']
+    return candidates  # Return the dictionary containing candidate data
+
 
 if __name__ == '__main__':
     app.run(debug=True)
