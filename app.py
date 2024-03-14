@@ -8,7 +8,6 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 mongoDB_connection = pymongo.MongoClient("mongodb+srv://<username>:<password>@cluster0.cynvddz.mongodb.net/")
 database = mongoDB_connection["voting_system"]
-testing_collection_for_analytics_dashboard = database["votes"]
 
 class Voter:
     def __init__(self, voter_id, full_name, adhaar_id, face_data, fingerprint_data):
@@ -37,9 +36,15 @@ def voter_registration():
 def candidate_registration():
     return render_template('candidate_registration.html')
 
+
 @app.route('/voting_results')
 def voting_results():
     candidates_data = dashboard()
+
+    # Check if there are no votes
+    if candidates_data is None:
+        return render_template('no_votes.html')  # Render a template indicating no votes
+
     return render_template('voting_results.html', candidates=candidates_data)
 
 @app.route('/submit_voter_registration', methods=['POST'])
@@ -105,23 +110,13 @@ def save_symbol(symbol_file):
     return symbol_path
 
 # Dashboard Work
-# Sample data
-sample_data = [
-    {"party": "Party A", "candidate": "Candidate 1", "votes": 250},
-    {"party": "Party A", "candidate": "Candidate 2", "votes": 120},
-    {"party": "Party B", "candidate": "Candidate 3", "votes": 180},
-    {"party": "Party B", "candidate": "Candidate 4", "votes": 90},
-    {"party": "Party C", "candidate": "Candidate 5", "votes": 200},
-    {"party": "Party C", "candidate": "Candidate 6", "votes": 210},
-]
-
-# Insert sample data if the collection is empty
-if testing_collection_for_analytics_dashboard.count_documents({}) == 0:
-    testing_collection_for_analytics_dashboard.insert_many(sample_data)
-
-print("Data inserted")
 def dashboard():
-    votes = list(testing_collection_for_analytics_dashboard.find())
+    votes_collection = database["votes"]
+    # if votes_collection.count_documents({}) == 0:
+    #     votes_collection.insert_many(sample_data)
+
+
+    votes = list(votes_collection.find())
     candidates = {}
     for vote in votes:
         candidate_party = f"{vote['candidate']} ({vote['party']})"
