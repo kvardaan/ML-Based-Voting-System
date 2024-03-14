@@ -35,7 +35,8 @@ label {
 
 input[type="text"],
 input[type="file"],
-input[type="submit"] {
+input[type="submit"],
+select { /* Add select element styling */
     width: 100%;
     padding: 10px;
     margin-bottom: 25px;
@@ -46,8 +47,7 @@ input[type="submit"] {
     transition: border-color 0.3s;
 }
 
-input[type="text"]:focus,
-input[type="file"]:focus {
+select:focus { /* Add focus styling for select element */
     border-color: #007bff;
     outline: none;
 }
@@ -146,8 +146,6 @@ footer a {
 footer a:hover {
     color: #ccc;
 }
-
-
 
 .topnav {
     overflow: hidden;
