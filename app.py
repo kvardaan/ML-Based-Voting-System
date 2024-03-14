@@ -43,9 +43,10 @@ def voting_results():
 
     # Check if there are no votes
     if candidates_data is None:
-        return render_template('no_votes.html')  # Render a template indicating no votes
+        return render_template('voting_results.html', candidates=None)  # Render the template with no votes
 
-    return render_template('voting_results.html', candidates=candidates_data)
+    return render_template('voting_results.html', candidates=candidates_data)  # Render the template with voting results
+
 
 @app.route('/submit_voter_registration', methods=['POST'])
 def submit_voter_registration():
