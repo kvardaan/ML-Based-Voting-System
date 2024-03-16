@@ -13,9 +13,8 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 mongoDB_connection = pymongo.MongoClient("mongodb+srv://<username>:<password>@cluster0.cynvddz.mongodb.net/")
 database = mongoDB_connection["voting_system"]
-voters_collection = database["voters"]
-candidates_collection = database["candidates"]
-votes_collection = database["votes"]
+voters_collection, candidates_collection, votes_collection = database["voters"], database["candidates"], database["votes"]
+
 
 class Voter:
     def __init__(self, voter_id, full_name, adhaar_id, face_data, fingerprint_data):
@@ -52,13 +51,13 @@ def voting():
 @app.route('/voting_results')
 def voting_results():
     candidates_data, colors, winner = dashboard()
+    votes = list(votes_collection.find())
 
     # Check if there are no votes
-    if candidates_data is None:
-        return render_template('voting_results.html', candidates=None, backgroundColors=None)  # Render the template with no votes
+    if candidates_data is None or votes is None:
+        return render_template('voting_results.html', candidates=None, backgroundColors=None, votes=None)  # Render the template with no votes
 
-    return render_template('voting_results.html', candidates=candidates_data, backgroundColors=colors, winner=winner)  # Render the template with voting results
-
+    return render_template('voting_results.html', candidates=candidates_data, backgroundColors=colors, winner=winner, votes=votes)  # Render the template with voting results
 
 @app.route('/submit_voter_registration', methods=['POST'])
 def submit_voter_registration():
