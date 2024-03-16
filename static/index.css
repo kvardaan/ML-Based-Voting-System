@@ -6,6 +6,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     margin: 0px 0px;
+    height: max-content;
 }
 
 /* Heading Styles */
@@ -35,7 +36,8 @@ label {
 
 input[type="text"],
 input[type="file"],
-input[type="submit"] {
+input[type="submit"],
+select { /* Add select element styling */
     width: 100%;
     padding: 10px;
     margin-bottom: 25px;
@@ -46,8 +48,7 @@ input[type="submit"] {
     transition: border-color 0.3s;
 }
 
-input[type="text"]:focus,
-input[type="file"]:focus {
+select:focus { /* Add focus styling for select element */
     border-color: #007bff;
     outline: none;
 }
@@ -131,24 +132,22 @@ footer {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 15px 0;
-    position: absolute;
+    padding: 14px 16px;
+    position: fixed;
     bottom: 0;
     width: 100%;
-    height: inherit;
-    position: fixed;
+    height: fit-content;
 }
 
 footer a {
     color: #fff;
     text-decoration: none;
+
 }
 
 footer a:hover {
     color: #ccc;
 }
-
-
 
 .topnav {
     overflow: hidden;

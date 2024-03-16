@@ -9,18 +9,20 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<div class="topnav" id="myTopnav">
-    <a {% block homeActive %}{% endblock %} href="/" class="active">Home </a>
-    <a {% block votingActive %}{% endblock %} href="/">Voting</a>
-    <a {% block voter_registrationActive %}{% endblock %} href="{{ url_for('voter_registration') }}">Voter Registration</a>
-    <a {% block candidate_registrationActive %}{% endblock %} href="{{ url_for('candidate_registration') }}">Candidate Registration</a>
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
+    <div class="topnav" id="myTopnav">
+        <a {% block homeActive %}{% endblock %} href="/" class="active">Home</a>
+        <a {% block votingActive %}{% endblock %} href="{{ url_for('voting') }}">Voting</a>
+        <a {% block voter_registrationActive %}{% endblock %} href="{{ url_for('voter_registration') }}">Voter Registration</a>
+        <a {% block candidate_registrationActive %}{% endblock %} href="{{ url_for('candidate_registration') }}">Candidate Registration</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
 
     <div class="container mt-4">
-        {% block content %}{% endblock %}
+        {% block content %}
+        <!-- This is where the content from different pages will be inserted -->
+        {% endblock %}
     </div>
 
     <footer>
@@ -29,16 +31,15 @@
         </div>
     </footer>
 
-    <!-- Your JavaScript files here -->
-<script>
-    function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
         }
-    }
-</script>
+    </script>
 </body>
 </html>
