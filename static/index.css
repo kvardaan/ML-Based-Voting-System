@@ -6,6 +6,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     margin: 0px 0px;
+    height: max-content;
 }
 
 /* Heading Styles */
@@ -131,16 +132,17 @@ footer {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 20px 0;
-    position: absolute;
+    padding: 14px 16px;
+    position: fixed;
     bottom: 0;
     width: 100%;
-    height: inherit;
+    height: fit-content;
 }
 
 footer a {
     color: #fff;
     text-decoration: none;
+
 }
 
 footer a:hover {
