@@ -154,6 +154,9 @@ footer a:hover {
     background-color: #333;
     display: flex;
     justify-content: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
 }
 
 .topnav a {
@@ -235,7 +238,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: auto;
+    margin: 5% auto;
 }
 
 .analyticsPage {

@@ -10,7 +10,6 @@ from random import randint
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-
 mongoDB_connection = pymongo.MongoClient("mongodb+srv://<username>:<password>@cluster0.cynvddz.mongodb.net/")
 database = mongoDB_connection["voting_system"]
 voters_collection, candidates_collection, votes_collection = database["voters"], database["candidates"], database["votes"]
