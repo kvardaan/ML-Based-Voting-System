@@ -1,36 +1,39 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<div class="container mt-4">
     <form action="/submit_vote" method="post">
-        <h3>Cast your Vote</h3>
+        <div class="form-group">
+            <h3>Cast your Vote</h3>
 
-        <label for="name">Enter Your Name</label>
-        <input type="text" id="name" name="name" placeholder="Name" required>
+            <label for="name">Enter Your Name</label>
+            <input id="name" name="name" placeholder="Name" required type="text">
 
-        <label for="adhaarId">Enter Adhaar Number</label>
-        <input type="text" id="adhaarId" name="adhaarId" placeholder="Aadhaar Number" required>
+            <label for="adhaarId">Enter Adhaar Number</label>
+            <input type="text" id="adhaarId" name="adhaarId" placeholder="Aadhaar Number" required>
 
-        <label for="voterId">Enter Voter ID</label>
-        <input type="text" id="voterId" name="voterId" placeholder="Voter ID" required>
+            <label for="voterId">Enter Voter ID</label>
+            <input type="text" id="voterId" name="voterId" placeholder="Voter ID" required>
 
-        <!-- Display candidate symbol separately -->
-        <div id="candidateSymbol">
-            <!-- The selected candidate symbol will be displayed here -->
+            <label for="candidateID">Choose Candidate</label>
+            <select class="custom-select" id="candidateID" name="candidateID" required onchange="displayPartyName(this)">
+                <option value="" disabled selected>Select a candidate</option>
+                {% for candidate in candidates %}
+                    <option value="{{ candidate.candidate_id }}" data-party="{{ candidate.party_name }}">{{ candidate.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="partyName">Party of the chosen Candidate</label>
+            <input type="text" id="partyName" name="partyName" placeholder="Party Name" readonly>
+
+            <button type="submit" value="Submit" style="font-weight: bold; font-size: 14px">Submit</button>
         </div>
-
-        <label for="candidate">Choose Candidate</label>
-        <select id="candidate" name="candidate" required onchange="displayCandidateInfo(this)">
-            <option value="" disabled selected>Select a candidate</option>
-            {% for candidate in candidates %}
-                <option value="{{ candidate.candidate_id }}" data-symbol="{{ candidate.symbol_path }}">{{ candidate.name }} - {{ candidate.party_name }}</option>
-            {% endfor %}
-        </select><br><br>
-
-        <input type="submit" value="Submit Vote">
     </form>
-</div>
 <script>
+    function displayPartyName(select) {
+        const partyName = select.options[select.selectedIndex].getAttribute('data-party');
+        document.getElementById('partyName').value = partyName;
+    }
+
     // Retrieve the message from the URL query parameter
     const urlParams = new URLSearchParams(window.location.search);
     const message = urlParams.get('message');
@@ -38,21 +41,6 @@
     // Display a pop-up message if a message is received
     if (message) {
         alert(message);
-    }
-
-    // Function to display candidate info including the symbol based on the selected option
-    function displayCandidateInfo(select) {
-        const symbolPath = select.options[select.selectedIndex].getAttribute('data-symbol');
-        document.getElementById('candidateSymbol').innerHTML = ''; // Clear previous symbol
-        if (symbolPath) {
-            // Create and append image element with fixed size
-            const img = document.createElement('img');
-            img.src = symbolPath;
-            img.alt = 'Symbol';
-            img.height = 50;
-            img.width = 50;
-            document.getElementById('candidateSymbol').appendChild(img);
-        }
     }
 </script>
 {% endblock %}
