@@ -10,7 +10,7 @@ from random import randint
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-mongoDB_connection = pymongo.MongoClient("mongodb+srv://<username>:<password>@cluster0.cynvddz.mongodb.net/")
+mongoDB_connection = pymongo.MongoClient("mongodb+srv://admin:ad_min@cluster0.cynvddz.mongodb.net/")
 database = mongoDB_connection["voting_system"]
 voters_collection, candidates_collection, votes_collection = database["voters"], database["candidates"], database["votes"]
 
@@ -29,6 +29,11 @@ class Candidate:
         self.name = name
         self.party_name = party_name
         self.symbol_path = symbol_path
+
+class Vote:
+    def __init__(self, voter_id, candidate_id):
+        self.voter_id = voter_id
+        self.candidate_id = candidate_id
 
 @app.route('/')
 def index():
@@ -89,7 +94,6 @@ def submit_candidate_registration():
     candidate_id = generate_voter_id()
 
     # Save the candidate information to MongoDB for candidates
-    # symbol_path = save_symbol(symbol)
     image_data = save_image(image)  # Save the candidate image and retrieve its data
 
     # Encode the image data to base64
@@ -104,15 +108,15 @@ def submit_candidate_registration():
 @app.route('/submit_vote', methods=['POST'])
 def submit_vote():
     voter_id = request.form.get('voterId')  # Get the voter ID from the form
-    candidate_id = request.form.get('candidate')  # Get the candidate ID from the form
+    candidate_id = request.form.get('candidateID')  # Get the candidate ID from the form
 
     # Check if the voter has already voted
     if votes_collection.find_one({'voter_id': voter_id}):
         return redirect(url_for('voting', message='You have already voted!'))
 
     # Insert the vote into the votes collection
-    vote_data = {'voter_id': voter_id, 'candidate_id': candidate_id}
-    votes_collection.insert_one(vote_data)
+    new_vote = Vote(voter_id, candidate_id)
+    votes_collection.insert_one(new_vote.__dict__)
 
     # Redirect the user to the voting results page
     return redirect(url_for('voting', message='Voted Successfully!'))

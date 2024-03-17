@@ -1,13 +1,15 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: rgba(255, 250, 240, 0.12);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    margin: 0px 0px;
-    height: max-content;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
 }
+
+.content {
+    flex-grow: 1;
+}
+
 
 /* Heading Styles */
 h3 {
@@ -132,11 +134,10 @@ footer {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 14px 16px;
-    position: fixed;
+    padding: 1em;
+    position: sticky;
     bottom: 0;
     width: 100%;
-    height: fit-content;
 }
 
 footer a {
@@ -234,40 +235,16 @@ button:hover {
     background-color: #0056b3;
 }
 
-.analyticsPage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 5% auto;
-}
-
-.analyticsPage {
-    table {
-        width: auto;
-        /*max-width: 25%;*/
-        border-collapse: collapse;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        background-color: #fff;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    th, td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-            color: #666;
-        }
-    th {
-        background-color: #f2f2f2;
-    }
-}
-
 .chart-container {
     width: 50%;
-    margin: 20px auto;
+    /*margin: 20px auto;*/
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: #fff;
     border-radius: 10px;
-    padding: 20px;
+    /*padding: 20px;*/
+}
+
+.analyticsPage {
+    margin: 4rem auto;
+    padding-top: 10px;
 }
