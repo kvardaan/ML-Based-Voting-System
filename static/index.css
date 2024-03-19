@@ -13,7 +13,7 @@ body {
 
 
 /* Heading Styles */
-h3 {
+h3, h1 {
     text-align: center;
     color: #333;
     font-weight: bold;
@@ -268,4 +268,9 @@ li {
 .bordered-box p {
     margin: 0;
     padding: 15px;
+}
+
+.dashboard p {
+    text-align: center;
+    margin-top: 2.5%;
 }
