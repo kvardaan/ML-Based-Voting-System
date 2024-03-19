@@ -3,6 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    max-width: 100%;
     margin: 0;
 }
 
@@ -45,7 +46,7 @@ select { /* Add select element styling */
     margin-bottom: 25px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
     font-size: 12px;
     transition: border-color 0.3s;
 }
@@ -102,11 +103,6 @@ input:invalid {
 .welcome {
     text-align: center;
     margin-top: 15%;
-}
-
-.voting-results{
-    display: flex;
-    justify-content: center;
 }
 
 .voting-results .nav-link:link, .voting-results .nav-link:visited {
@@ -237,7 +233,7 @@ button:hover {
 }
 
 .chart-container {
-    width: 50%;
+    width: 30%;
     /*margin: 20px auto;*/
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: #fff;
@@ -245,7 +241,32 @@ button:hover {
     /*padding: 20px;*/
 }
 
-.analyticsPage {
-    margin: 4rem auto;
-    padding-top: 10px;
+.card-footer {
+    width: 100%;
+}
+
+.dashboard {
+    max-width: 80%;
+    justify-content: center;
+    margin: 5% auto;
+}
+
+li {
+    list-style-type: none;
+}
+
+.bordered-box {
+    border: 2px solid #000000; /* Dynamic border color will be applied here */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #f8f9fa; /* Background color */
+    box-shadow: 1px 1px 5px 1px dimgrey; /* Box shadow for depth */
+    color: #333; /* Text color */
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.bordered-box p {
+    margin: 0;
+    padding: 15px;
 }
